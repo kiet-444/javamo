@@ -45,17 +45,17 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
 
-//        if (!isValidUsername(username)) {
-//            usernameInput.setError("Username must contain both letters and numbers or only letters");
-//            return false;
-//        }
+        if (!isValidUsername(username)) {
+            usernameInput.setError("Username must contain both letters and numbers or only letters");
+            return false;
+        }
 
         if (TextUtils.isEmpty(password)) {
             passwordInput.setError("Password is required");
             return false;
         }
 
-        // Check if password meets the criteria
+        // Check if password wrong format
         if (!isValidPassword(password)) {
             passwordInput.setError("Password must be at least 8 characters, with one uppercase and one lowercase letter");
             return false;
@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-//    private boolean isValidUsername(String username) {
-//        Pattern usernamePattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)|^[a-zA-Z]+$");
-//        return usernamePattern.matcher(username).matches();
-//    }
+    private boolean isValidUsername(String username) {
+        Pattern usernamePattern = Pattern.compile("^(?=.*[a-zA-Z])[a-zA-Z\\d]+$");
+        return usernamePattern.matcher(username).matches();
+    }
 
     private boolean isValidPassword(String password) {
         // Password 8 letter and 1 word uppercase 1 lowercase
